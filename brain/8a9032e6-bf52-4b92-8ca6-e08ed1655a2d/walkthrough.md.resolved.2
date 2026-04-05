@@ -1,0 +1,25 @@
+# Pixel Art Editor: Advanced Tools Added
+
+I have enhanced the Pixel Art Editor with the following advanced features:
+
+## New Features
+
+- **Brush & Fill Tools**: 
+    - A new toolbar in the top section allows you to switch between the standard **Brush** and a new **Flood Fill** tool.
+    - The Fill tool uses an efficient BFS algorithm to fill connected areas of the same color.
+- **Brush Size Selection**:
+    - A **Size** spinner lets you set the brush/eraser width from 1px to 4px.
+    - Drawing now supports centered square strokes for larger sizes.
+- **HSV Color Picker**:
+    - The `JColorChooser` is now pre-configured to automatically focus on the **HSV tab**, giving you better control over Hue, Saturation, and Value.
+- **Recent Colors Palette**:
+    - A new **Recent Colors** section below the chooser tracks your last 10 unique colors.
+    - Simply click a color swatch in the palette to switch back to it instantly.
+
+## Technical Improvements
+
+- **Undo/Redo Support**: All tool actions (Brush strokes and Flood Fills) are fully integrated with the existing Undo/Redo system.
+- **Improved UI Layout**: Organized the color management and tool settings for better ergonomics on the 16x16 grid.
+
+### Verification
+The code has been compiled and verified with `mvn compile`. No lint errors or regressions were found.

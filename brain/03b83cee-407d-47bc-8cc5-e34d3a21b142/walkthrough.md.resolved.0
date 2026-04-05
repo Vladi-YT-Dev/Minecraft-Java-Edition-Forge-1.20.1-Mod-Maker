@@ -1,0 +1,36 @@
+# Minecraft 1.20.1 Mod Maker Completed
+
+I have finished executing the implementation plan to create a graphical Minecraft Mod Maker for Forge 1.20.1.
+
+## What was built:
+
+1. **`pom.xml`**: A standard Maven project file has been defined. However, I've manually compiled the application for you since standard `mvn` wasn't available on your system environment.
+2. **`ModMakerApp.java`**: A native Java Swing Graphical User Interface (GUI) containing inputs for:
+    - **Mod ID**: The unique lowercase identifier (e.g., `mymod`).
+    - **Mod Name**: A clean display name.
+    - **Block Name**: The name of the custom block you are adding.
+    - **Block Texture File Chooser**: A button to locate an image (PNG).
+    - **Output Directory File Chooser**: A location where the actual mod workspace will be spat out.
+3. **`ModGenerator.java`**: The core component that handles the heavy lifting:
+    - **Dynamic Download**: Downloads the exact, standardized `forge-1.20.1-47.3.0-mdk.zip`.
+    - **Extraction and Setup**: Unzips the MDK, deletes vanilla example classes, replaces values in `gradle.properties`, formats your base package, and auto-generates the `DeferredRegister` boilerplate for your custom block in the codebase.
+    - **Assets Injection**: Plops JSON descriptors for language translation (`en_us.json`), Block State generation, Block Models, Item Models, and properly deposits the selected texture into the `assets` folder.
+
+## How to use it:
+
+The easiest way to run the compiled application is to use the `run.sh` script I created in the folder:
+
+```bash
+cd /home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker
+./run.sh
+```
+
+**Workflow:**
+1. Execute the app to open the window.
+2. Fill out all the required details. You must pick an image (preferably `16x16 .png` for pixel art) and pick a root directory.
+3. Click **"Generate"**. Keep in mind it will briefly freeze or notify "Generating..." because it needs to download a 3MB MDK zip from Forge's servers.
+4. Once successfully generated, you'll see a pop-up.
+5. In your shell, navigate to the output directory you chose, and run `./gradlew build` to bake the Mod JAR, or open it in your favorite IDE (IntelliJ / Eclipse)!
+
+> [!NOTE]
+> The default material behavior properties of the block have been set to `Blocks.STONE`, meaning the block will look/sound like stone internally and requires a pickaxe to break optimally.

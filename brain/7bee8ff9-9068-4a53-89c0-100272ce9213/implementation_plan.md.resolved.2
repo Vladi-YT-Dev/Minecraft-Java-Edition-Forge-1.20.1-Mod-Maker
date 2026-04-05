@@ -1,0 +1,31 @@
+# Fix Compilation Error in Generated Mod
+
+The new detailed error reporting revealed a compilation error in the generated `MainMod.java`. The generator was hardcoding `ITEM_E_0` as the icon for the custom creative tab, but this variable name is incorrect if the first element in the mod is an Entity (which uses `E_0_EGG`).
+
+## User Review Required
+
+> [!IMPORTANT]
+> I will update the code generation logic to dynamically determine the correct variable name for the creative tab icon based on the type of the first element in the queue.
+
+## Proposed Changes
+
+### [Component Name: ModGenerator]
+
+#### [MODIFY] [ModGenerator.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModGenerator.java)
+
+1.  **Dynamic Icon Reference**: Calculate the correct icon variable name before generating `tabCode`.
+    - If the first element is a Block or Item, use `ITEM_E_0`.
+    - If the first element is an Entity, use `E_0_EGG`.
+2.  **Ordering**: Ensure that the DeferredRegisters and RegistryObjects are declared in an order that avoids "cannot find symbol" errors, even though static references in lambdas are usually flexible. It's safer to have the item definitions before the tab definition that references them.
+
+## Open Questions
+
+- Should we allow the user to pick which item is the "icon" for the tab? (For now, I'll stick to the first item for simplicity, but I'll make it work regardless of type).
+
+## Verification Plan
+
+### Automated Tests
+- I'll create a reproduction test case that adds an Entity as the first element and verify that the generated Java code uses `E_0_EGG` for the tab icon.
+
+### Manual Verification
+- After the fix, the user should be able to generate a mod starting with an Entity without compilation errors.

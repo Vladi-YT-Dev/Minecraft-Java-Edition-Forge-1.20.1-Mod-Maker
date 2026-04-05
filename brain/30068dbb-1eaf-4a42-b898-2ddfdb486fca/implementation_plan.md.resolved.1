@@ -1,0 +1,52 @@
+# Expanded Block and Item Properties
+
+I will add more advanced configuration options for both Blocks and Items and ensure they are correctly implemented in the generated Forge mod.
+
+## Proposed Changes
+
+### Data Layer
+#### [MODIFY] [BlockData.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/BlockData.java)
+- Add fields: `lightLevel`, `resistance`, `soundType`, `isTransparent`.
+- Update constructor and accessors.
+
+#### [MODIFY] [ItemData.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ItemData.java)
+- Add fields: `maxStackSize`, `rarity`, `isGlowing`.
+- Update constructor and accessors.
+
+### UI Layer
+#### [MODIFY] [ModMakerApp.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModMakerApp.java)
+- **Block Tab**:
+    - Add `JSpinner` for Light Level (0-15).
+    - Add `JSpinner` for Resistance.
+    - Add `JComboBox` for Sound Type (Stone, Wood, Gravel, Metal, Grass, Glass).
+    - Add `JCheckBox` for Transparency.
+- **Item Tab**:
+    - Add `JSpinner` for Max Stack Size (1-64).
+    - Add `JComboBox` for Rarity (Common, Uncommon, Rare, Epic).
+    - Add `JCheckBox` for Glow Effect.
+- **Data Collection**: Update `addBlock` and `addItem` to retrieve these new values.
+
+### Generation Layer
+#### [MODIFY] [ModGenerator.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModGenerator.java)
+- Update `writeJavaClasses`:
+    - Incorporate new attributes into `BlockBehaviour.Properties`.
+    - Incorporate new attributes into `Item.Properties`.
+    - Implement the Glow effect by overriding `isFoil` in the generated Item/Tool registration code.
+    - Add necessary imports: `net.minecraft.world.level.block.SoundType`, `net.minecraft.world.item.Rarity`, `net.minecraft.world.level.material.MapColor`.
+
+## Open Questions
+
+> [!IMPORTANT]
+> **Custom Entities**: Adding custom entities is a significantly more complex task involving AI, models (GeckoLib or JSON), and renderers. Should I start with basic property expansion first, or do you want a simplified "Generic Mob" creator as well?
+
+## Verification Plan
+
+### Automated Tests
+- Run `mvn clean compile` to ensure no syntax errors in the app.
+
+### Manual Verification
+1. Launch the app.
+2. Create a "Glow Stone" block with Light Level 15 and Glass sounds.
+3. Create a "Legendary Sword" with Epic rarity and Glow effect.
+4. Add them to queue and verify the "Display String" in the list looks correct.
+5. Generate the mod and (if possible) check the generated `MainMod.java` source code for the correct properties.

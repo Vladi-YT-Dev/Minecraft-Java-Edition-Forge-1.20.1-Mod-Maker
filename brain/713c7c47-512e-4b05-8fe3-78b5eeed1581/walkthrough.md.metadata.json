@@ -1,0 +1,5 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_WALKTHROUGH",
+  "summary":  "A summary of the AppImage creation for the Minecraft Mod Maker application. Includes details on building the Uber JAR, custom JRE bundling, and final packaging.",
+  "updatedAt":  "2026-04-02T20:59:17.103373085Z"
+}

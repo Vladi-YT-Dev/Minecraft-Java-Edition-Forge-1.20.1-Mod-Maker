@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Minecraft Mod Maker
+Exec=minecraft_mod_maker
+Icon=minecraft_mod_maker
+Categories=Development;
+Comment=Create Minecraft Forge Mods easily
+Terminal=false

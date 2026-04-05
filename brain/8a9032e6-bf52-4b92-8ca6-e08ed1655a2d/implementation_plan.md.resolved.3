@@ -1,0 +1,52 @@
+# Crafting Recipe Creator
+
+This plan details the addition of a crafting recipe editor to the Minecraft Mod Maker, allowing users to define how their custom blocks and items are created using standard Minecraft materials.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The recipe system will specifically support **Shaped Crafting** (3x3 grid). 
+> I will provide a searchable list of approximately 100+ common Minecraft blocks/items (Iron, Diamond, Oak Logs, etc.) to use as ingredients. For anything missing, you will be able to manually type the ID.
+
+## Proposed Changes
+
+### Data Model
+
+#### [NEW] [Recipe.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/Recipe.java)
+- A simple class containing a 3x3 array of `String` (Minecraft IDs).
+
+#### [MODIFY] [BlockData.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/BlockData.java) & [ItemData.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ItemData.java)
+- Add a `Recipe` field to these classes and update their constructors.
+
+### UI Components
+
+#### [MODIFY] [ModMakerApp.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModMakerApp.java)
+- **Crafting Grid Panel**: Create a internal method to build a 3x3 grid of `JButton`s.
+- **Item Selector Sidebar**: A list of common Minecraft items (e.g., `minecraft:iron_ingot`, `minecraft:stick`).
+- **Interactive Logic**: 
+    - Selecting an item from the list sets the "Current Ingredient".
+    - Clicking a slot in the 3x3 grid assigns that ingredient to the slot.
+    - Right-clicking or a "Clear" tool clears a slot.
+- **Integration**: Insert this panel into both the "Add Block" and "Add Item" tabs.
+
+### Generator Logic
+
+#### [MODIFY] [ModGenerator.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModGenerator.java)
+- Implement `createRecipes(File workDir, String modId, List<ModElement> elements)`:
+    - Iterates through elements.
+    - If a recipe is defined, generate a JSON file in `src/main/resources/data/<modid>/recipes/<element_name>.json`.
+    - Correctly maps the 3x3 grid to the Forge "pattern", "key", and "result" format.
+
+## Open Questions
+
+- Should I include a "Crafting Result Count" (e.g., crafting 1 block gives you 4 items)? I plan to default it to 1 for now.
+- Is a searchable list of ~100 common items sufficient for the "All Blocks" requirement, or do you need a more exhaustive list?
+
+## Verification Plan
+
+### Manual Verification
+1.  Open the App.
+2.  Create a custom block.
+3.  Define a recipe (e.g., 3 iron ingots in a row).
+4.  Generate the Mod.
+5.  Inspect the generated JAR's `data` folder to ensure the recipe JSON exists and is correctly formatted.

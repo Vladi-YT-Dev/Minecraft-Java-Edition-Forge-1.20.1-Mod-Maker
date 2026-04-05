@@ -1,0 +1,13 @@
+# Pixel Art Undo / Redo
+
+I've successfully implemented state-tracking mechanics giving you total freedom to experiment in the basic pixel art creator without fear of losing progress!
+
+## Features 
+
+* **Infinite State History**: The editor creates a full snapshot of the canvas grid right before any new stroke (or the "Clear" button interaction).
+* **Keyboard Shortcuts**: Added bindings to the Swing `InputMap` specifically for `Ctrl + Z` and `Ctrl + Y` (or `Ctrl + Shift + Z` depending on your typical workflow!). Those bindings seamlessly invoke the underlying queue logic!
+* **Explicit Control Flow Buttons**: For ease-of-access, "Undo" and "Redo" triggers are placed directly into the bottom bar next to the "Clear" component.
+
+## Architecture
+
+This feature was added gracefully using distinct `java.util.Stack` sets tracking isolated `Color[][]` matrices mimicking standard application image history states.

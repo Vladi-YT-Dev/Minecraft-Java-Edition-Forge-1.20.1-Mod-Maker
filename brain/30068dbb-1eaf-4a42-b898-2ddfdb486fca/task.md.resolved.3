@@ -1,0 +1,5 @@
+- [ ] Update `EntityData.java` (AI flags & model file)
+- [ ] Update `ModMakerApp.java` (UI for model selection & AI checklist)
+- [ ] Update `ModGenerator.java` (Model processing logic)
+- [ ] Update `ModGenerator.java` (Advanced AI goal generation)
+- [ ] Verify generated mod code

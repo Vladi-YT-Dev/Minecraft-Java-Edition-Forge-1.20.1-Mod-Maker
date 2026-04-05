@@ -1,0 +1,7 @@
+- [x] Enhance Gradle error reporting in `ModGenerator.java`
+- [x] Add live log popup
+- [x] Fix compilation error in `MainMod.java`
+    - [x] Calculate dynamic icon variable name for `MOD_TAB`
+    - [x] Update `tabCode` in `ModGenerator.java`
+    - [x] Verify fix with an Entity-first mod generation
+- [x] Verify the global fixes

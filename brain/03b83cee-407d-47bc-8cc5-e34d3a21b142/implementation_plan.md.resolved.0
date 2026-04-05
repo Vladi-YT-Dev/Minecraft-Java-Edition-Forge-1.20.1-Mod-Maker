@@ -1,0 +1,46 @@
+# Forge 1.20.1 Mod Generator Application
+
+This plan describes the creation of a standalone Java application with a graphical interface (Java Swing) that generates a complete, working Minecraft Forge 1.20.1 mod project.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The resulting application is going to be written in Java using Swing for the GUI. It will download the official Forge 1.20.1 MDK under the hood when generating a mod. You will need to build the Java application on your own using Maven, or I can run the package command for you. Please let me know if you are okay with downloading the Forge MDK dynamically, or if you prefer me to bundle a stripped-down template (which is harder to maintain). I recommend dynamic download to ensure an exact match with standard Forge tools.
+
+## Proposed Changes
+
+### Application Core & GUI
+
+I will create a root Maven file to define the project (no external dependencies except standard Java).
+The logic will be encapsulated in a single or a few Java class files to ensure simplicity.
+
+#### [NEW] [pom.xml](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/pom.xml)
+A standard Maven file to manage the build of the standalone Mod Maker Java app.
+
+#### [NEW] [ModMakerApp.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModMakerApp.java)
+The main entry point and UI layout. Contains inputs for Mod ID, Mod Name, Block Name, a field and button to choose a texture, and an output directory selector. Includes a "Generate" button.
+
+#### [NEW] [ModGenerator.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModGenerator.java)
+Contains the core logic that:
+1. Downloads the `forge-1.20.1-47.3.0-mdk.zip`.
+2. Extracts it to the target directory.
+3. Modifies `gradle.properties` based on user inputs.
+4. Cleans up default template files (`com.example.examplemod`).
+5. Generates the `Main` mod class with `DeferredRegister` for blocks/items.
+6. Generates JSON files (blockstates, models, lang, etc.) for the new block.
+7. Copies the user-selected block texture into the correct `assets` path.
+
+## Open Questions
+
+> [!WARNING]
+> Do you want the mod generation process to use a specific base material for the block? By default, the plan uses `Blocks.STONE` properties for the newly generated block (meaning it will require a pickaxe, have stone sound, etc.).
+
+## Verification Plan
+
+### Automated Tests
+1. I will run the Maven build (`mvn clean package`) for the Mod Maker Java App to verify it compiles.
+
+### Manual Verification
+1. I will ask you to run the `ModMakerApp.jar`.
+2. You will generate a mod by entering the mod details, choosing an output folder, and selecting an image for the texture.
+3. Then we will check the generated directory to verify it can run `./gradlew build` without issues.

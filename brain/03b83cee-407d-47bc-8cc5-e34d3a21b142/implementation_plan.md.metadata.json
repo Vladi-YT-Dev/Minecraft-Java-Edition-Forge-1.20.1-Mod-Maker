@@ -1,0 +1,7 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary":  "Plan to add robust 2D Item generation, supporting custom food consumables with hunger/saturation and standard combat/mining tools assigned to vanilla tiers. Involves a UI revamp using tabbed panels.",
+  "updatedAt":  "2026-04-01T20:49:00.216480471Z",
+  "version":  "3",
+  "requestFeedback":  true
+}

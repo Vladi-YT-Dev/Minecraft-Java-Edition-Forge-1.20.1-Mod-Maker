@@ -1,0 +1,35 @@
+# Minecraft 1.20.1 Mod Maker Completed
+
+I have finished updating the Minecraft Mod Maker for Forge 1.20.1 to natively support dynamic tool requirements and custom breaking limits.
+
+## What was built:
+
+1. **`BlockData.java`**: Our central block blueprint was updated to save two new properties: `toolType` and `breakingTime`.
+2. **`ModMakerApp.java`**: The User Interface has been expanded with two new inputs:
+    - **Tool Dropdown**: Lets you assign exactly what tool (Pickaxe, Axe, Shovel, Hoe, Sword, or Hand) should realistically "break" the block.
+    - **Break Time Spinner**: A decimal selector (defaults to `1.5`) answering to 'Hardness' under the hood. For scale, `1.5` is roughly stone/wood, whereas an obsidian block is `50.0`.
+3. **`ModGenerator.java`**: The code generator has been taught to interpret these new UI properties:
+    - **Java Properties Injection**: Whenever a block is initialized inside `MainMod.java`, the `.destroyTime(value)` command is appended.
+    - **Correct Tool Strictness**: If a tool aside from "Hand" and "Sword" is designated, `.requiresCorrectToolForDrops()` is bolted on, so trying to punch it with your bare hands yields zero drops!
+    - **Minecraft Tag Generation**: Finally, dynamic lists are constructed on the fly. We hook directly into Minecraft's native `data/minecraft/tags/blocks/mineable/...` paths so that Forge structurally recognizes your custom blocks as officially mineable by standard axes or pickaxes.
+
+## How to use it:
+
+The easiest way to run the compiled application is to use the `run.sh` script I created:
+
+```bash
+cd /home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker
+./run.sh
+```
+
+**Workflow:**
+1. Execute the app.
+2. Provide your **Mod ID** and **Name**.
+3. In the **Add Block** section, notice the new options. Fill out your `Block Name`, its `Texture File`, which `Tool Needed` to break it smoothly, and customize its `Break Time` float.
+4. Hit **Add Block To Queue**. 
+5. The queue widget actively stores all your specifications. Repeat step 3 for as many custom blocks as you'd like!
+6. Choose the output directory and click **Generate**.
+7. Presto! Wait for the popup, and your compiled `mymod.jar` file will be deposited right into your output folder, fully respecting every single pickaxe parameter and mining speed variant you queued up.
+
+> [!NOTE]
+> The 'Mineable' tiers default broadly in this version. This means if you pick "Pickaxe", any pickaxe structure built using standard woods to diamond will recognize your blocks and shatter them evenly.

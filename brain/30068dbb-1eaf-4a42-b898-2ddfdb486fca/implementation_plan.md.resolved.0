@@ -1,0 +1,40 @@
+# Refactor Block Texture UI
+
+The goal is to improve the "Add Block" UI by hiding the multi-texture fields and showing a single "Texture" field when the "Use same texture for all sides" option is selected.
+
+## Proposed Changes
+
+### [ModMakerApp.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModMakerApp.java)
+
+#### [MODIFY] 
+- **Add instance variables**:
+    ```java
+    private JTextField blockSingleTexturePathField;
+    private File blockSingleTexture;
+    private JPanel textureContainer;
+    private CardLayout textureCardLayout;
+    ```
+- **Refactor `createBlockTab()`**:
+    - Initialize `textureCardLayout` and `textureContainer`.
+    - Create `multiTexturePanel` with Top, Bottom, and Side components.
+    - Create `singleTexturePanel` with a new single "Texture (PNG):" input (Label, TextField, Browse/Create buttons).
+    - Update `useSameTextureCheckBox` `ActionListener` to switch cards using `textureCardLayout.show(...)`.
+    - Re-layout the main block panel for a cleaner appearance with the new panels.
+- **Update `syncTextures(File f, String path)`**:
+    - Sync all field path values and File objects to the single provided value.
+- **Update `addBlock(ActionEvent e)`**:
+    - Ensure logical texture source selection based on the `useSameTextureCheckBox` state. (If checked, use `blockSingleTexture` as the source for all sides).
+
+## Verification Plan
+
+### Automated Tests
+- Since this is a UI-heavy change, automated tests involve running the application and script-driven browser testing if applicable (though this is a Swing app).
+- Visual verification via the 3D preview.
+
+### Manual Verification
+1. Launch `ModMakerApp`.
+2. Navigate to "Add Block" tab.
+3. Toggle "Use same texture for all sides" and verify visibility of correct fields.
+4. Set a single texture, verify 3D preview shows it correctly on all sides.
+5. Set multiple textures (uncheck box), verify 3D preview shows different textures correctly.
+6. Add the block to queue and verify field clearing.

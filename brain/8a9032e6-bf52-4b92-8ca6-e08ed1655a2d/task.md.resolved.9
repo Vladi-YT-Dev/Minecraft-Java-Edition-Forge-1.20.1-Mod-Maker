@@ -1,0 +1,5 @@
+- [x] Copy `items.json` to `src/main/resources/items.json`.
+- [ ] Implement `loadItems()` in `RecipeGridPanel.java` to read IDs dynamically.
+- [ ] Replace the hardcoded `COMMON_ITEMS` with the full list.
+- [ ] Ensure search and icons still work for the expanded list.
+- [ ] Verify compilation and UI performance.

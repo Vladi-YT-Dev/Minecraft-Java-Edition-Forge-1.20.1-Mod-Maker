@@ -1,0 +1,36 @@
+# 3D Entity Model Varieties
+
+Currently, all entities use a simple 16x16x16 cube. I will add the ability to choose between different 3D body shapes.
+
+## Proposed Changes
+
+### Data Layer
+#### [MODIFY] [EntityData.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/EntityData.java)
+- Add a `String modelType` field (values: "Cube", "Humanoid", "Quadruped").
+
+### UI Layer
+#### [MODIFY] [ModMakerApp.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModMakerApp.java)
+- Add a "Model Type" JComboBox to the "Add Entity" tab.
+
+### Generation Layer
+#### [MODIFY] [ModGenerator.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModGenerator.java)
+- Update `writeEntityClasses` to dynamically generate the `Model.java` file contents based on the `modelType`.
+- **Humanoid**: Will include limbs and walking animations (swinging arms/legs).
+- **Quadruped**: Will include generic animal legs and walking animations.
+- **Cube**: Remains the fallback simple box.
+
+## Details on Models
+
+### Humanoid (Biped)
+Use the standard Forge/Minecraft structure:
+- `head`, `body`, `right_arm`, `left_arm`, `right_leg`, `left_leg`.
+- Sync walking animations in `setupAnim`.
+
+### Quadruped
+- `body`, `leg1`, `leg2`, `leg3`, `leg4`, `head`.
+- Standard walking logic.
+
+## Verification Plan
+1. Configure three entities: "Boxy" (Cube), "Steve2" (Humanoid), and "Piggy" (Quadruped).
+2. Generate the mod.
+3. Check the produced `{Name}Model.java` files to ensure different `createBodyLayer` and `setupAnim` implementations.

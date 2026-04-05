@@ -1,0 +1,38 @@
+# Recipe Popup & Icon Support
+
+This plan refines the Recipe Creator by moving it to a dedicated popup dialog and adding visual icons for Minecraft materials.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The recipe editor will now open in a separate window (Dialog).
+> Icons will be dynamically generated based on the item name, but I will provide a way for you to supply your own PNG files for a custom look.
+
+## Proposed Changes
+
+### UI Components
+
+#### [NEW] [RecipeDialog.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/RecipeDialog.java)
+- A modal dialog containing the 3x3 grid and item browser.
+- **Icon Support**: Uses a custom renderer to show visual icons in the grid slots and the product preview.
+- **Product Preview**: Shows the custom block/item being edited (using its current pixel art texture if available).
+
+#### [MODIFY] [ModMakerApp.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/ModMakerApp.java)
+- Replace embedded `RecipeGridPanel` with a **"Setup Crafting Recipe"** button in both the Block and Item tabs.
+- Store a reference to the `Recipe` object for the current element.
+
+#### [NEW] [IconSystem.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/IconSystem.java)
+- A utility to generate/fetch icons.
+- **Dynamic Generator**: Creates stylized 32x32 icons for Minecraft materials (e.g., grey cube for iron, yellow for gold, brown for planks) with short text labels.
+- **Local Fallback**: Allows the app to look for `.png` files in a local assets directory.
+
+### Visual Polish
+- Update the 3x3 grid buttons to use dark backgrounds and "slot" styling common in Minecraft GUIs.
+
+## Verification Plan
+
+### Manual Verification
+1.  Click the "Define Recipe" button in the Block Tab.
+2.  Assign ingredients in the popup.
+3.  Observe the visual icons in the grid.
+4.  Save and confirm the recipe persists in the main app window (via a "Recipe Set" status label).

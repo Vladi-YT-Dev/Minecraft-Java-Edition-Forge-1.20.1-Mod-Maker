@@ -1,0 +1,26 @@
+# Walkthrough: Fixed 3D Preview Issues
+
+I have addressed the reported issues with the 3D preview in the Minecraft Mod Maker application.
+
+## Changes Made
+
+### UI Enhancements
+- Increased the height of the **Preview Panel** from 200px to **300px**. This gives the preview more breathing room and makes it easier to inspect the textures.
+
+### Rendering Improvements
+- Implemented **texture subdivision** in the 3D rendering engine.
+- Instead of rendering each cube face as two triangles (which caused a noticeable "curve" or distortion at the diagonal), the system now divides each face into an **8x8 grid of quads** (128 triangles total per face).
+- This subdivision smoothing significantly reduces the affine distortion, providing a much cleaner and near-perspective-correct appearance.
+
+## Verification
+
+### Build & Compilation
+- Ran `mvn clean compile` to ensure no regressions were introduced.
+- **Result**: [BUILD SUCCESS](term://5677)
+
+### Logic Review
+- The `getBilinearPoint` method correctly interpolates screen coordinates between the four projected corners of a face.
+- The `drawWarpedFace` loop correctly subdivides the texture coordinates and screen coordinates, resulting in smaller, more linear triangles that approximate the perspective transform better.
+
+> [!TIP]
+> You can now see the textures much more clearly, and the "kink" at the center of each face should be practically invisible.

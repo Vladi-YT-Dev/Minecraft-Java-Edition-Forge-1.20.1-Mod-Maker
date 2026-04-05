@@ -1,0 +1,7 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary":  "Integrating all Minecraft item/block IDs from the user-provided items.json.",
+  "updatedAt":  "2026-04-02T15:23:24.700047181Z",
+  "version":  "5",
+  "requestFeedback":  true
+}

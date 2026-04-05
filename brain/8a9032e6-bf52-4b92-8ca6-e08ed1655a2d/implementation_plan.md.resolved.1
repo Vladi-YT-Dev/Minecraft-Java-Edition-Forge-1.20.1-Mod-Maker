@@ -1,0 +1,47 @@
+# Add Undo/Redo to Pixel Art Editor
+
+This plan details the implementation of a basic Undo/Redo history system in the `PixelArtDialog`.
+
+## User Review Required
+
+Please review the proposed design. We will:
+- Record history states at the start of a mouse brush stroke (mouse press) or a full clear.
+- Provide "Undo" (`Ctrl+Z`) and "Redo" (`Ctrl+Y`) functionality mapped closely to what standard image editors do.
+- Does placing the "Undo" and "Redo" buttons in the bottom control panel next to the "Clear" button work for your layout preferences?
+
+## Proposed Changes
+
+### UI & Core Logic
+
+#### [MODIFY] [PixelArtDialog.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/PixelArtDialog.java)
+- **State Management**:
+  - Add `Stack<Color[][]> undoStack = new Stack<>();`
+  - Add `Stack<Color[][]> redoStack = new Stack<>();`
+  - Create a private method `cloneGrid(Color[][])` that performs a deep copy of the `Color[16][16]` array to isolate states.
+- **Stroke Capture**: 
+  - On `mousePressed` in the `SimpleCanvas`, push a deep clone of the current `gridColors` frame to the `undoStack` and then completely clear the `redoStack`.
+  - The "Clear" button action will also push the state to the `undoStack` before clearing the canvas.
+- **Undo / Redo Methods**:
+  - `undo()`: If `undoStack` is not empty, push a clone of current `gridColors` to `redoStack`, pop from `undoStack` and assign to `gridColors`, then `repaint()`. 
+  - `redo()`: If `redoStack` is not empty, push a clone of current `gridColors` to `undoStack`, pop from `redoStack`, and `repaint()`.
+- **UI Components**: Add `JButton undoBtn` and `JButton redoBtn` to the `controlPanel` at the bottom of the dialog alongside `Clear`.
+- **Key Bindings**: 
+  - Retrieve the application `InputMap` and `ActionMap` for the main panel or canvas.
+  - Map `Ctrl+Z` to the `undo()` method.
+  - Map `Ctrl+Y` and `Ctrl+Shift+Z` to the `redo()` method.
+
+## Open Questions
+
+- We will allow infinite undo history in this session because a 16x16 array of generic Java Colors is very small in memory. Is this acceptable or would you prefer a hard limit on undo steps (e.g. max 50)?
+
+## Verification Plan
+
+### Automated Tests
+- No new automated tests are planned.
+
+### Manual Verification
+- We will start `ModMakerApp`.
+- Open the PixelArtDialog.
+- Draw several strokes and verify `Ctrl+Z` rolls back each stroke sequentially.
+- Verify `Ctrl+Y` replays the history.
+- Ensure clicking the UI Undo/Redo buttons perform the same actions.

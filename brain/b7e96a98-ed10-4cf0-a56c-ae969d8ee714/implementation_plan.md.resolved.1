@@ -1,0 +1,31 @@
+# Fix Mirrored Textures in 3D Preview
+
+The user reported that textures are mirrored on the spinning cube. This is caused by incorrect vertex mapping order for several cube faces.
+
+## User Review Required
+
+> [!NOTE]
+> I have re-calculated the correct vertex order (Top-Left, Top-Right, Bottom-Right, Bottom-Left) for each of the 6 cube faces to ensure they correctly map to the texture coordinates regardless of rotation.
+
+## Proposed Changes
+
+### [Component Name]
+
+#### [MODIFY] [PreviewPanel.java](file:///home/vladimir/.gemini/antigravity/scratch/minecraft_mod_maker/src/main/java/com/modmaker/PreviewPanel.java)
+- Update `faceIndices` to correct the vertex mapping for the **Back**, **Left**, and **Bottom** faces.
+- Current Indices: `{4, 5, 6, 7}, {0, 1, 2, 3}, {0, 4, 7, 3}, {1, 5, 6, 2}, {0, 1, 5, 4}, {3, 2, 6, 7}`
+- New Indices: `{4, 5, 6, 7}, {1, 0, 3, 2}, {4, 0, 3, 7}, {1, 5, 6, 2}, {0, 1, 5, 4}, {7, 6, 2, 3}`
+
+## Open Questions
+
+None.
+
+## Verification Plan
+
+### Automated Tests
+- None.
+
+### Manual Verification
+- Select a texture with asymmetric features (e.g., text or a distinctive mark on one side).
+- Observe the spinning cube in the preview.
+- Ensure the texture orientation is consistent and not mirrored on any side (except where naturally expected if the user selected the same file for opposite sides).

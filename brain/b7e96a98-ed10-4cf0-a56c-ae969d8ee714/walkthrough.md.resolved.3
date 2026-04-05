@@ -1,0 +1,30 @@
+# Walkthrough: Fixed 3D Preview Issues
+
+I have addressed the reported issues with the 3D preview in the Minecraft Mod Maker application.
+
+## Changes Made
+
+### UI Enhancements
+- Increased the height of the **Preview Panel** from 200px to **300px**. This gives the preview more breathing room and makes it easier to inspect the textures.
+
+### Rendering Improvements
+- Implemented **texture subdivision** in the 3D rendering engine.
+- Instead of rendering each cube face as two triangles (which caused a noticeable "curve" or distortion at the diagonal), the system now divides each face into an **8x8 grid of quads** (128 triangles total per face).
+- This subdivision smoothing significantly reduces the affine distortion, providing a much cleaner and near-perspective-correct appearance.
+- **Slowed down the rotation** speed (decreased the angle increment from 0.03 to 0.01 per frame) to make it easier to view the 3D model.
+- **Fixed mirrored textures** by re-ordering the vertex mapping for the Back, Left, and Bottom faces of the cube. This ensures that textures always maintain their correct orientation as the cube spins.
+- **Improved Block Texture-Mapping**: Added a "Use same texture for all sides" checkbox. When enabled, selecting one texture automatically synchronizes all other faces (Top, Bottom, Sides), both in the UI and in the internal `BlockData`.
+- **Creative Inventory Support**: Added a "Use Dedicated Creative Tab" option. When selected, the generator creates everything needed to register a custom creative mode tab for your mod (Minecraft 1.20.1 Forge standard), grouping all your custom items and blocks together.
+
+## Verification
+
+### Build & Compilation
+- Ran `mvn clean compile` to ensure no regressions were introduced.
+- **Result**: [BUILD SUCCESS](term://5677)
+
+### Logic Review
+- The `getBilinearPoint` method correctly interpolates screen coordinates between the four projected corners of a face.
+- The `drawWarpedFace` loop correctly subdivides the texture coordinates and screen coordinates, resulting in smaller, more linear triangles that approximate the perspective transform better.
+
+> [!TIP]
+> You can now see the textures much more clearly, and the "kink" at the center of each face should be practically invisible.

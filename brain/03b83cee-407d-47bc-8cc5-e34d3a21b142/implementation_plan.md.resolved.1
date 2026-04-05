@@ -1,0 +1,28 @@
+# Implementation Plan: Block Queue Support
+
+The goal is to update the application to support adding multiple custom blocks to a single generated mod. 
+
+## Proposed Changes
+
+### [NEW] com.modmaker.BlockData
+We will create a simple data class to store the information for each block added to the queue:
+- `String blockName`
+- `File textureFile`
+
+### [MODIFY] com.modmaker.ModMakerApp.java (GUI)
+1. **Layout Update**: Add a scrollable list view (`JList` or `JTextArea`) on the right side or bottom of the window to display the queued blocks.
+2. **Add Button**: Introduce an `Add Block to Queue` button. When clicked:
+   - Validates the current block name and texture.
+   - Pushes the block into an internal `List<BlockData>`.
+   - Clears the texture and block name fields so you can quickly enter the next one.
+   - Updates the visual list component.
+
+### [MODIFY] com.modmaker.ModGenerator.java
+1. Change the `generateMod` parameters to accept `List<BlockData> queuedBlocks` instead of a single name/texture.
+2. Loop over this list to generate code inside `MainMod.java` so that multiple `RegistryObject<Block>` and `RegistryObject<Item>` instances are created using `DeferredRegister`.
+3. Loop over the list in the assets section so that multiple `blockstates`, `models`, `lang` JSONs, and `.png` textures are generated/copied.
+
+## User Review Required
+
+> [!CAUTION]
+> Because we are adding arbitrary blocks, I will update the code generator to iterate dynamically. When you click `Generate Mod`, it will package all blocks in the queue into a single mod compilation step. Does this flow (adding blocks one by one, then hitting generate at the end) sound exactly like what you want?

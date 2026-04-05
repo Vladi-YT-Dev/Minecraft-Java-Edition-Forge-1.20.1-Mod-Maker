@@ -1,0 +1,10 @@
+- [x] Enhance Gradle error reporting in `ModGenerator.java`
+    - [x] Update `buildMod` to capture stdout and stderr
+    - [x] Modify `generateMod` to include Gradle output in exception
+    - [x] Implement conditional cleanup of the temporary work directory
+- [x] Add logging to file in `ModGenerator.java`
+- [x] Add live log popup
+    - [x] Create `LogDialog` in `ModMakerApp.java`
+    - [x] Update `ModGenerator` to accept a log consumer
+    - [x] Connect the two in `ModMakerApp.generateMod`
+- [x] Verify the fixes

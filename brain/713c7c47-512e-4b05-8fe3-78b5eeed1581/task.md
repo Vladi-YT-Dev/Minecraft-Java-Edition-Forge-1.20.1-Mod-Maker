@@ -1,0 +1,10 @@
+- [x] Generate a Minecraft-themed application icon
+- [x] Build the executable Uber JAR with Maven
+- [x] Identify required Java modules using `jdeps`
+- [x] Create a minimal JRE using `jlink`
+- [x] Set up the `AppDir` structure
+- [x] Create `AppRun` and launcher scripts
+- [x] Create the `.desktop` entry
+- [x] Download `appimagetool`
+- [x] Generate the final `.AppImage`
+- [x] Verify the AppImage launches correctly

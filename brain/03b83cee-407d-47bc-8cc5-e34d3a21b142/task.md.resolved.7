@@ -1,0 +1,7 @@
+- `[x]` Create `ModElement.java` interface and adjust `BlockData`
+- `[x]` Create `ItemData.java` model class for 2D items, food, and tools
+- `[x]` Update `ModMakerApp.java` (GUI) to refactor inputs into a `JTabbedPane`
+- `[x]` Add "Add Item" UI fields (Food boolean, Food parameters, Tool boolean, Tool parameters)
+- `[x]` Update `ModGenerator.java` to handle `ModElement` elements dynamically (generate items, json models, block vs item registrations)
+- `[x]` Recompile mapping app and test
+- `[x]` Update walkthrough artifact
