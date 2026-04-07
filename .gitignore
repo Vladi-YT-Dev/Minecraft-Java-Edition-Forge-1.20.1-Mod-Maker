@@ -1,0 +1,21 @@
+# Build output
+target/
+
+# AppImage tool (binary, not source)
+appimagetool-x86_64.AppImage
+
+# AppDir runtime (rebuilt by package_appimage.sh)
+AppDir/usr/lib/app.jar
+AppDir/usr/lib/jre/
+
+# Mod maker cache
+cache/
+
+# IDE
+.vscode/
+*.iml
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
