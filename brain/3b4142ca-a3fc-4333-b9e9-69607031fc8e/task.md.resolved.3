@@ -1,5 +1,0 @@
-- [x] Create `PreviewPanel.java` with 3D projection and texture warping logic
-- [x] Integrate `PreviewPanel` into `ModMakerApp.java` UI
-- [x] Connect texture fields to `PreviewPanel`
-- [x] Add support for item preview (spinning 2D plane)
-- [x] Verify rotation and texture mapping

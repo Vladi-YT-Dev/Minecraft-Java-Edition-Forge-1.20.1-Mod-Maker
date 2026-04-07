@@ -1,5 +1,0 @@
-- [ ] Add new fields to `ModMakerApp.java`
-- [ ] Refactor `createBlockTab` UI structure
-- [ ] Implement texture mode toggling logic
-- [ ] Update texture synchronization and block queueing
-- [ ] Verify with manual testing

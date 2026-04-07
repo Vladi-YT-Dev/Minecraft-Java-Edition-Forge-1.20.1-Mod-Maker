@@ -1,4 +1,0 @@
-- [ ] Modify `BlockData.java` to support top, bottom, and side textures
-- [ ] Modify `ModGenerator.java` to use `cube_bottom_top` model and copy all textures
-- [ ] Modify `ModMakerApp.java` to update the Block tab UI
-- [ ] Verify the changes by checking the generated code/assets

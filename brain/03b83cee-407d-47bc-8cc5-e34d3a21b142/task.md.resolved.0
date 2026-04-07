@@ -1,5 +1,0 @@
-- `[ ]` Initialize Maven project (`pom.xml`)
-- `[ ]` Create `ModMakerApp.java` (Swing GUI)
-- `[ ]` Create `ModGenerator.java` (Logic for downloading MDK, extracting, modifying files)
-- `[ ]` Verify application builds successfully
-- `[ ]` Update walkthrough artifact

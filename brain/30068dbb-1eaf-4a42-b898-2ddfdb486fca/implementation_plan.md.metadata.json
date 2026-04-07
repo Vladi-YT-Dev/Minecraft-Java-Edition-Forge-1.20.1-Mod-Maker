@@ -1,7 +1,0 @@
-{
-  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
-  "summary":  "I will enable **Custom 3D Models** for mobs by allowing you to import **Blockbench Java Models**.\n\nKey additions:\n- **Custom Model Support**: In the \"Add Entity\" tab, you'll be able to upload a `.java` model file exported directly from **Blockbench** (using their \"Java Entity Model\" export).\n- **Automated Integration**: I will automatically adjust the package and class names of your uploaded model so it works perfectly with the rest of your mod's code.\n- **AI-Only Focus**: The mod maker will now focus on the \"Logic\" (AI behaviors) and let you handle the \"Visuals\" (3D shapes) in Blockbench.\n- **Expanded AI Selection**: I'll include the previously mentioned behaviors (Melee, Leap, Tameable, etc.) to give your custom 3D mobs unique personalities.",
-  "updatedAt":  "2026-04-04T09:47:01.451084303Z",
-  "version":  "5",
-  "requestFeedback":  true
-}

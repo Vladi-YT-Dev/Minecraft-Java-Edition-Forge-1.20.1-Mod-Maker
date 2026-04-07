@@ -1,3 +1,0 @@
-- [ ] Increase PreviewPanel height to 300px
-- [ ] Implement texture subdivision in `drawWarpedFace` for perspective-correct mapping
-- [ ] Verify the fix

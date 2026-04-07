@@ -1,6 +1,0 @@
-{
-  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
-  "summary":  "Implementation plan to add support for separate top, bottom, and side textures for Minecraft blocks.",
-  "updatedAt":  "2026-04-03T16:34:34.509230711Z",
-  "requestFeedback":  true
-}

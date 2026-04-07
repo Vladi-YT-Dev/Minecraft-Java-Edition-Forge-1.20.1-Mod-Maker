@@ -1,6 +1,0 @@
-{
-  "artifactType":  "ARTIFACT_TYPE_TASK",
-  "summary":  "Implement Blockbench Model Integration & Advanced AI:\n- [ ] Update `EntityData.java` with AI flags and model file field.\n- [ ] Update `ModMakerApp.java` UI with model file picker and AI checkboxes.\n- [ ] Update `ModGenerator.java` to process custom `.java` models from Blockbench.\n- [ ] Implement dynamic `registerGoals` logic in `ModGenerator.java` based on AI flags.\n- [ ] Implement specialized AI behaviors (pouncing, sun damage, water avoidance) in generated entity code.\n- [ ] Verify functionality with a sample custom model.",
-  "updatedAt":  "2026-04-04T09:47:31.041372474Z",
-  "version":  "3"
-}

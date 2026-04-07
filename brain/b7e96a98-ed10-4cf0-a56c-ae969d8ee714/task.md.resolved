@@ -1,7 +1,0 @@
-- [x] Increase PreviewPanel height to 300px
-- [x] Implement texture subdivision in `drawWarpedFace` for perspective-correct mapping
-- [x] Slower rotation speed (decreased from 0.03 to 0.01)
-- [x] Fix mirrored textures on Back, Left, and Bottom faces
-- [x] Add "Use same texture for all sides" checkbox and synchronization logic
-- [x] Add "Include in a dedicated creative inventory tab" checkbox and generator support
-- [x] Verify the fix (Compiled successfully)

@@ -1,7 +1,0 @@
-{
-  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
-  "summary":  "Remove the Creative Tab feature from the Mod Maker application and generator.",
-  "updatedAt":  "2026-04-04T13:40:17.677150065Z",
-  "version":  "3",
-  "requestFeedback":  true
-}

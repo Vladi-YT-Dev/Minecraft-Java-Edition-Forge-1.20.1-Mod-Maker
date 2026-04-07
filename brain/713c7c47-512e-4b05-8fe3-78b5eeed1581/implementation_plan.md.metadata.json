@@ -1,6 +1,0 @@
-{
-  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
-  "summary":  "Developing an AppImage creation plan for the Minecraft Mod Maker application. It includes building, custom JRE bundling, and packaging using `appimagetool`.",
-  "updatedAt":  "2026-04-02T20:47:50.608913099Z",
-  "requestFeedback":  true
-}
