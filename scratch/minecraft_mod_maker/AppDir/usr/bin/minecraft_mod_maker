@@ -1,5 +1,0 @@
-#!/bin/bash
-SELF=$(dirname "$(readlink -f "$0")")
-JRE_BIN="$SELF/../lib/jre/bin/java"
-JAR_PATH="$SELF/../lib/app.jar"
-"$JRE_BIN" -jar "$JAR_PATH" "$@"

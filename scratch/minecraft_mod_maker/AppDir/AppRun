@@ -1,4 +1,0 @@
-#!/bin/bash
-SELF=$(dirname "$(readlink -f "$0")")
-export PATH="$SELF/usr/bin:$PATH"
-exec "minecraft_mod_maker" "$@"
