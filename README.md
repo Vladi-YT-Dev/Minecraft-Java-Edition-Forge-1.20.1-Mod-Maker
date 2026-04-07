@@ -119,6 +119,6 @@ src/main/java/com/modmaker/
 ## Notes
 
 - Entity names must start with a letter and contain only letters, numbers, spaces, or underscores
-- Mod ID must be lowercase letters, numbers, or underscores (e.g. `cool_mod`)
-- Custom entity models should be exported from [Blockbench](https://www.blockbench.net/) as Java/Bedrock Entity model `.java` files
+- Mod ID must be lowercase letters, numbers or underscores (e.g. `cool_mod`)
+- Custom entity models should be exported from [Blockbench](https://www.blockbench.net/) as Modded Entity model `.java` files
 - The first generate will take a while — Forge MDK download + Gradle dependency resolution can take several minutes
